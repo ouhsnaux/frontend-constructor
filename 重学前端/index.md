@@ -34,18 +34,5 @@
 1. 无法通过查阅解决的原理和背景讲清楚
 2. 不方便查阅和记忆的内容整理好
 
-* 类型
-    * undefined
-    * null
-    * string
-    * number
-    * boolean
-    * object
-    * symbol
-* 类型转换
-    * 转基础类型
-    * StringToNumber
-    * NumberToString
-    * 装箱
-    * 拆箱
+
 
