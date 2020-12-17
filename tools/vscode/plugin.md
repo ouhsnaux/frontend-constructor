@@ -11,7 +11,7 @@
 * editorConfig for vscode
 * eslint
 * prettier
-* markdownlint
+* markdownLint
 
 ## vue
 
