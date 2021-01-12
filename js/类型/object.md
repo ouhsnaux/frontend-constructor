@@ -75,6 +75,8 @@ let a = new Array(5);
 * `Date` 类型无法还原，得到的是字符串
 * `RegExp` 和 `Error` 类型得到的是空对象
 
+`Undefined` `Function` `Symbol` 出现在数组中会变为 `null`
+
 ## 遍历
 
 | 方法 | 访问原型链 | 访问不可枚举属性 |
