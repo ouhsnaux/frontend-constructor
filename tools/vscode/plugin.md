@@ -23,3 +23,5 @@
 ## 其它
 
 * Todo Tree - 查看所有待办项
+* GitLens - git操作
+* CodeMetrics - 圈复杂度
