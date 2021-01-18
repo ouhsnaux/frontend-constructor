@@ -8,7 +8,7 @@
 解决方法是判断两数相减的绝对值小于最小精度：
 
 ```js
-Math.abs(a - b) < Number.EPISON;
+Math.abs(a - b) < Number.EPSILON;
 ```
 
 ## 特殊值
@@ -32,7 +32,7 @@ Math.abs(a - b) < Number.EPISON;
 1 / -0 = -Infinity
 Number.isFinite 判断是否 Infinity
 Number.POSITIVE_INFINITY = Infinity
-Number.NEGETIVE_INFINITY = -Infinity
+Number.NEGATIVE_INFINITY = -Infinity
 ```
 
 ## 字符串转化为数字
