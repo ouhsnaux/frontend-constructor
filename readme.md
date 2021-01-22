@@ -33,14 +33,7 @@
   * 端测试
 * 工具
   * 编辑器
-    * 插件
-    * 模板
-    * 快捷键
-    * 配置
   * 代码格式化
-    * editor-config
-    * eslint
-    * prettier
   * webpack
   * babel
   * 版本控制
