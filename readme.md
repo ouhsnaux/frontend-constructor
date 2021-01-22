@@ -3,33 +3,34 @@
 * html
   * 基础
   * 语义化
-  * 浏览器api
 * css
   * 基础
     * 选择器
     * 盒模型
   * less,sass
 * js
-  * 基础
-  * es6
+  * ECMAScript3/5/6
+  * BOM
+  * DOM
   * ts
   * 实践
     * 防抖节流
     * Promise
     * Axios
+* 框架
+  * vue
+    * 基础
+    * router
+    * vuex
+    * 源码
+  * react
+    * 基础
+    * router
+    * redux
+    * 源码
 * 单元测试
   * 普通测试
   * 端测试
-* vue
-  * 基础
-  * router
-  * vuex
-  * 源码
-* react
-  * 基础
-  * router
-  * redux
-  * 源码
 * 工具
   * 编辑器
     * 插件
@@ -51,11 +52,13 @@
   * 渲染流程
   * v8
   * devTools
-* 设计模式
-* 网络
-  * http
-  * 缓存
-  * axios
+* 计算机基础
+  * 设计模式
+  * 数据结构与算法
+  * 网络
+    * http
+    * 缓存
+    * axios
 * 可视化
   * canvas
   * svg
@@ -67,3 +70,5 @@
   * 性能优化
   * 体验优化
 * 安全
+  * XSS
+  * CSRF
