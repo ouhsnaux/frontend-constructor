@@ -19,11 +19,6 @@
     * Axios
 * 框架
   * vue
-    * 基础
-    * router
-    * vuex
-    * 源码
-    * SSR
   * react
     * 基础
     * router
