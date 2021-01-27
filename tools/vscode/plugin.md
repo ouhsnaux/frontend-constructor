@@ -4,7 +4,6 @@
 
 * beautify - 美观
 * chinese - 中文包
-* code spell check - 拼写检查
 * vscode-icons - 图标
 
 ## 格式化
@@ -28,3 +27,6 @@
 * CodeMetrics - 圈复杂度
 * Bracket Pair Colorizer - 匹配括号
 * MarkDown All in One - 处理MarkDown文件，可转换为html
+* Auto Close Tag / Auto Rename Tag - html标签
+* css peek - 快速跳转到css定义
+* code spell check - 拼写检查
