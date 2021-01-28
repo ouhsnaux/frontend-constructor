@@ -1,22 +1,14 @@
 # 前端架构
 
-* html
+* html TODO
   * 基础
   * 语义化
-* css
+* css TODO
   * 基础
     * 选择器
     * 盒模型
   * less,sass
 * js
-  * ECMAScript3/5/6
-  * BOM
-  * DOM
-  * ts
-  * 实践
-    * 防抖节流
-    * Promise
-    * Axios
 * 框架
   * vue
   * react
@@ -25,6 +17,7 @@
     * redux
     * 源码
     * SSR
+  * 比较
 * 单元测试
   * 普通测试
   * 端测试
@@ -46,9 +39,6 @@
   * 设计模式
   * 数据结构与算法
   * 网络
-    * http
-    * 缓存
-    * axios
 * 可视化
   * canvas
   * svg
@@ -59,6 +49,4 @@
   * 代码优化
   * 性能优化
   * 体验优化
-* 安全
-  * XSS
-  * CSRF
+* [安全](./security/index.md)
