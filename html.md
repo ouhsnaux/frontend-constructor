@@ -10,6 +10,7 @@
   * css
 * meta
   * charset
+* style
 * script
 
 ## body
@@ -22,15 +23,40 @@
 * main
   * article
   * section
+  * table
+    * caption
+    * colgroup
+    * thead
+      * tr
+        * th
+    * tbody
+      * tr
+        * td
+          * rowspan
+          * colspan
+    * tfoot
   * p
     * span
     * a
+    * area
     * ul/ol
       * li
     * dl
       * dt/dd
   * br
   * hr
+  * form
+    * input
+      * type
+        * password
+        * radio
+        * checkbox
+        * submit
+    * textarea
+    * select
+      * option
+    * button
+    * label for
 * footer
 
 ### 媒体
@@ -57,9 +83,22 @@
 
 #### 引用
 
+| 标签 | 含义 |
+|:--|:--|
+| abbr | 定义缩写 |
+| em | 定义着重文字 |
+| i | 定义斜体字 |
+| small |定义小号字 |
+| strong | 定义加重语气 |
+
+### 计算机输出
+
 ### 特殊字符
 
-<、>、&、空格
+* \< => \&lt;
+* \> => \&gt;
+* \& => \&amp;
+* 空格 => \&nbsp;
 
 ### 注释
 <!-- 这是注释 -->
@@ -84,3 +123,10 @@
 ### 其它
 
 * disabled
+* rel="noopener noreferrer"
+
+## 参考
+
+[菜鸟教程](https://www.runoob.com/html/html-tutorial.html)
+[MDN](https://developer.mozilla.org/en-US/docs/Web/HTML)
+[HTML Standard](https://html.spec.whatwg.org/)
