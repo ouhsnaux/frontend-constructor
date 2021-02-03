@@ -1,54 +1,53 @@
 # 前端架构
 
-* html TODO
-  * 基础
-  * 语义化
-* css TODO
-  * 基础
-    * 选择器
-    * 盒模型
-  * less,sass
-* js
-* 框架
-  * vue
-  * react
-    * 基础
-    * router
-    * redux
-    * 源码
-    * SSR
-  * 比较
-* 单元测试
-  * 普通测试
-  * 端测试
-* 工具
-  * 编辑器
-  * 代码格式化
-  * webpack
-  * babel
-  * 版本控制
-    * git
-      * 基础
-      * 工作流
-* 浏览器
-  * ast
-  * 渲染流程
-  * v8
-  * devTools
-* 计算机基础
-  * 设计模式
-  * 数据结构与算法
-  * 网络
-* 可视化
-  * canvas
-  * svg
-* 工程化
-  * 错误上报
-  * 登录
-  * 权限管理
-* node
-* 优化
-  * 代码优化
-  * 性能优化
-  * 体验优化
-* [安全](./security/index.md)
+- html TODO
+  - 基础
+  - 语义化
+- css TODO
+  - 基础
+    - 选择器
+    - 盒模型
+  - less,sass
+- js
+- 框架
+  - vue
+  - react
+    - 基础
+    - router
+    - redux
+    - 源码
+    - SSR
+  - 比较
+- 单元测试
+  - 普通测试
+  - 端测试
+- 工具
+  - 编辑器
+  - 代码格式化
+  - webpack
+  - babel
+  - 版本控制
+- 浏览器
+  - ast
+  - 渲染流程
+  - v8
+  - devTools
+- 计算机基础
+  - 设计模式
+  - 数据结构与算法
+  - 网络
+  - 操作系统
+- 可视化
+  - canvas
+  - svg
+- 工程化
+  - 错误上报
+  - 埋点
+  - 登录系统
+  - 权限管理
+- node
+- 优化
+  - 代码优化
+  - 性能优化
+  - 体验优化
+- [安全](./security/index.md)
