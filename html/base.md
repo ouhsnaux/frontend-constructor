@@ -179,6 +179,7 @@ started with developing web sites and applications.">
   * 键盘输入 `<kbd>`
   * 输出 `<output>`
 * 时间 `<time>` `datetime` 中按照固定的格式填写真正的时间，以便计算机识别
+* 换行 `<br>`，水平线 `<hr>` 意味着主题的转变。
   
 ## hyperlinks
 
@@ -223,4 +224,4 @@ started with developing web sites and applications.">
 
 ## 位置
 
-[上次阅读到](https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/Document_and_website_structure#line_breaks_and_horizontal_rules)
+[上次阅读到](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding)
