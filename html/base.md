@@ -220,8 +220,137 @@ started with developing web sites and applications.">
 
 无语义使用 `<div>` 和 `<span>`，切记不要滥用。
 
-## Debugging HTML
+## 替换元素和嵌套元素
+
+通过这些非文字内容，让你的页面更加灵活生动，更加炫酷。
+
+## 图片 `<img>`
+
+`<img src="dinosaur.png" alt="dinosaur">`
+
+`src` 属性就是图片的 `url`，当图片加载失败时，`alt` 中的内容会出现。
+
+如果图片中的内容很重要，则使用 `<img>` 标签。
+如果只是起装饰作用，则使用 `css background` 属性。
+
+还可以添加 `width` 和 `height` 属性，预留宽高。
+
+为了将图片与其说明文字联系在一起，需要使用 `<figure>` 和 `<figcaption>`
+
+```html
+<figure>
+  <img
+    src="images/dinosaur.jpg"
+    alt="The head and torso of a dinosaur skeleton;
+        it has a large head with long sharp teeth"
+    width="400"
+    height="341"
+  >
+  <figcaption>A T-Rex on display in the Manchester University Museum.</figcaption>
+</figure>
+```
+
+`<figure>` 标签内部可以是多个图片，代码片段，`audio`，`video`，`table` 等等。
+
+## Video & Audio
+
+例子
+
+```html
+<video src="rabbit320.webm" controls>
+  <p>Your browser doesn't support HTML5 video. Here is a <a href="rabbit320.webm">link to the video</a> instead.</p>
+</video>
+```
+
+`src` 属性指向资源文件地址。
+`controls` 表明用户是否可以控制文件，比如播放，暂停，调节音量等。
+标签内容会在浏览器不支持 `video` 标签时显示。
+
+为解决兼容性问题，我们可以这样写：
+
+```html
+<video controls>
+  <source src="rabbit320.mp4" type="video/mp4">
+  <source src="rabbit320.webm" type="video/webm">
+  <p>Your browser doesn't support HTML5 video. Here is a <a href="rabbit320.mp4">link to the video</a> instead.</p>
+</video>
+```
+
+TODO 看看视频网站是怎么做的。
+
+`video` 与 `audio` 的其它属性
+
+* `width` & `height` 宽高，宽高比不会变，根据情况留白。
+* `autoplay` 自动播放。
+* `loop` 循环播放
+* `muted` 静音
+* `poster` 在视频播放前显示
+* `preload`
+  * `none` 不缓冲
+  * `auto` 自动缓冲
+  * `metadata` 只缓冲元数据
+
+字幕 `<track>`
+
+字幕文件保存为 `.vtt` 文件，包括时间和文字，格式如下：
+
+```vtt
+WEBVTT
+
+1
+00:00:22.230 --> 00:00:24.606
+This is the first subtitle.
+
+2
+00:00:30.739 --> 00:00:34.074
+This is the second.
+
+  ...
+```
+
+字幕属性：
+
+* `src` 指定资源文件
+* `kind`
+  * `subtitles` 翻译
+  * `captions` 对话转录或重要声音的描述
+  * `timed descriptions` 媒体播放器使用的文件，为盲人描述视觉效果
+* `srclang` 字母语言类型，缩写
+* `label` 字幕语言类型，会出现在页面上，用于用户切换
+* `default` 默认使用文件
+
+## Embedding
+
+`<iframe>` 可以展示别人的网站，例子：
+
+```html
+<iframe
+  src="https://developer.mozilla.org/en-US/docs/Glossary"
+  width="100%"
+  height="500"
+  sandbox
+>
+  <p>
+    <a href="/en-US/docs/Glossary">
+       Fallback link for browsers that don't support iframes
+    </a>
+  </p>
+</iframe>
+```
+
+属性：
+
+* `src` 目标网址
+* `width` & `height` 宽高
+* `sandbox`
+* 如果浏览器不支持 `<iframe>` 会展示标签里的内容
+
+为了提高速度，可以在页面渲染完成后，通过 `js` 设置 `iframe` 的 `src`。
+
+## Vector graphics
+
+## Responsive images
 
 ## 位置
 
-[上次阅读到](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding)
+[上次阅读到](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Other_embedding_technologies#security_concerns)
