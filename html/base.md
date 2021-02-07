@@ -252,6 +252,52 @@ started with developing web sites and applications.">
 
 `<figure>` 标签内部可以是多个图片，代码片段，`audio`，`video`，`table` 等等。
 
+响应式图片
+
+添加 `srcset` 和 `sizes` 属性。
+
+```html
+<img srcset="elva-fairy-480w.jpg 480w,
+             elva-fairy-800w.jpg 800w"
+     sizes="(max-width: 600px) 480px, 800px"
+     src="elva-fairy-800w.jpg"
+     alt="Elva dressed as a fairy"
+>
+```
+
+`srcset` 属性包括多个资源，以逗号隔开，
+每个资源包括图片 `url`、空格和固有宽度，单位为 `w`。
+`srcset` 也可以根据分辨率选择不同的资源，
+格式为图片 `url`、空格和分辨率，单位为 `x`。这种方式不需要 `sizes` 属性。
+
+`sizes` 定义了一系列条件和图片尺寸，展示符合条件的图片。
+首先找到符合的条件，然后图片宽度等于给定值（没有设置css），图片资源使用大于等于该值的最小尺寸图片。
+比如例子中，如果屏幕尺寸小于 `600px` 就会选择 `480px` 图片，
+否则使用 `800px` 图片。
+
+如果需要根据条件显示不同内容的图片，需使用 `picture` 元素
+
+```html
+<picture>
+  <source media="(max-width: 799px)" srcset="elva-480w-close-portrait.jpg">
+  <source media="(min-width: 800px)" srcset="elva-800w.jpg">
+  <img src="elva-800w.jpg" alt="Chris standing up holding his daughter Elva">
+</picture>
+```
+
+内部使用 `<source>`标签，`media` 表示条件，`srcset` 表示图片 `url`
+最后添加 `<img>` 标签做替补。
+
+`<picture>` 标签也可以给有兼容性问题的图片添加替补
+
+```html
+<picture>
+  <source type="image/svg+xml" srcset="pyramid.svg">
+  <source type="image/webp" srcset="pyramid.webp">
+  <img src="pyramid.png" alt="regular pyramid built from four equilateral triangles">
+</picture>
+```
+
 ## Video & Audio
 
 例子
@@ -342,15 +388,56 @@ This is the second.
 
 * `src` 目标网址
 * `width` & `height` 宽高
-* `sandbox`
+* `sandbox` 安全，建议每次都使用
 * 如果浏览器不支持 `<iframe>` 会展示标签里的内容
 
 为了提高速度，可以在页面渲染完成后，通过 `js` 设置 `iframe` 的 `src`。
 
-## Vector graphics
+安全：
 
-## Responsive images
+`clickJacking`，
+`CSP`，
+使用`HTTPS`，
+总是使用 `sandbox` 属性，限制内部页面可执行的操作。
+
+## Table
+
+结构化数据。
+
+* `<table>` 根元素
+* `<caption>` 标题
+* `<thead>`
+* `<tbody>`
+* `<tfoot>`
+* `<tr>` 包裹一行
+* `<td>` 单元格
+* `<th>` 有标题性质的单元格
+
+属性
+
+* `colspan` 此单元格占据多少列
+* `rowspan` 此单元格占据多少行
+
+给一整列设置属性
+
+`<colgroup>` 包裹元素
+`<col>` 列元素，样式应用于整列，属性 `span` 表示占据多少列
+
+```html
+<table>
+  <td>Hi, I'm your first cell.</td>
+</table>
+```
+
+`<th>` 元素有一个 `scope` 属性
+
+* `col` 这个标题是相对于整列
+* `colgroup` 多列
+* `row` 这个标题是相对于整行
+* `rowgroup` 多行
+
+也可给 `th`元素添加 `id` 属性，给 `td` 添加 `headers` 属性表示对应关系。
 
 ## 位置
 
-[上次阅读到](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Other_embedding_technologies#security_concerns)
+[上次阅读到](https://developer.mozilla.org/en-US/docs/Learn/Forms)
