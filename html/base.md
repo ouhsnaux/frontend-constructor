@@ -438,6 +438,116 @@ This is the second.
 
 也可给 `th`元素添加 `id` 属性，给 `td` 添加 `headers` 属性表示对应关系。
 
+## form
+
+* `<form>` 表单根元素
+  * `action` 属性，表单提交的地址
+  * `method` 方法，`http methods get/post...`
+* `<label>` 控件描述
+  * `for` 属性，输入对应控件的 `id`，表明对应关系
+* `<input>` 输入框
+  * `type` 属性
+    * `text` 文本类型
+    * `checkbox`
+    * `radio`
+    * `password` 密码
+    * `submit` 提交按钮
+    * `hidden` 不显示，但是提交表单时传参
+    * `image` 需添加 `src` 属性，点击时提交表单，上传点击位置
+    * `file` 上传文件，`accept` 限制文件格式，`multiple` 控制上传多个文件。
+  * `type-html5`
+    * `email` 邮件，可以使用 `multiple`，多个邮箱使用逗号隔开，会校验格式
+    * `search`，一般会有一个清空符号，搜索后内容会保存，下次搜索可用
+    * `tel`，手机会唤起数字键盘
+    * `url`，格式校验
+    * `number`，只允许输入数字，`min` `max`，`step`每次改变步长
+    * `range`，slider `min`, `max`, `step`，不会显示值，需要使用 `js`
+    * `time`
+    * `color`
+    * `progress`
+    * `meter`
+  * `value` 默认值
+  * `name` 表单提交时的参数名
+  * `disabled` 只读
+  * `placeholder` 控件描述，无内容时显示
+  * `size` 设定 `input` 的长度和 `select` 的高度
+  * `spellcheck` 拼写检查
+  * `autofocus` 自动聚焦
+  * `form` 如果控件在表单外部，使用此属性表示关联关系
+  * 校验
+    * `maxlength` 最大可输入字符数量
+    * `pattern` 模式
+    * `required` 必填
+* `<textarea>` 多行文字输入框，元素内容为默认值。
+  * `cols` 列，`rows` 行
+  * `wrap` 为 `hard` 时，在达到最大宽度时，自动插入换行符
+* `<select>` + `<option>` 选择框
+  * 选中项带有属性 `selected`
+  * `<optgroup>` 元素可以给 `<option>` 分组
+  * 表单会提交 `<option>` 的 `value` 属性
+  * `multiple` 多选
+* `<datalist>` + `<option>` 自动填充，`id` 与 `<input>` 元素 `list` 属性对应
+
+  ```html
+    <label for="myFruit">What's you favorite fruit?</label>
+    <input type="text" name="myFruit" id="myFruit" list="mySuggestion">
+    <datalist id="mySuggestion">
+      <option>Apple</option>
+      <option>Banana</option>
+      <option>Lemon</option>
+    </datalist>
+  ```
+
+* `<button>` 按钮
+  * `type` 属性
+    * `reset` 重置为默认值
+    * `submit` 提交表单
+    * `button` 没用
+* `<fieldset>` `<legend>` 控件分组，例子
+
+  ```html
+  <form>
+    <fieldset>
+      <legend>Fruit juice size</legend>
+      <p>
+        <input type="radio" name="size" id="size_1" value="small">
+        <label for="size_1">Small</label>
+      </p>
+      <p>
+        <input type="radio" name="size" id="size_2" value="medium">
+        <label for="size_2">Medium</label>
+      </p>
+    </fieldset>
+  </form>
+  ```
+
+`<input type="submit" />` 与 `<button type="submit"></button>` 相比，
+`<input>` 元素内容只能是纯文本，而 `<button>` 内容没有限制。
+
+`<label>` 元素除了与 `<input>` 元素并列外，
+也可以将 `<input>` 放到 `label`内部，
+如果一个控件有多个分离的 `<label>`，最好用嵌套形式合并。
+点击 `<label>` 元素也会激活对应的控件。
+
+### checkbox & radio
+
+每次使用 `radio` 或 `checkbox` 都应该放到 `fieldset` 中。
+`checked` 属性表明默认选中项。
+`checkbox` 适用于开关。
+如果一组 `radio`  拥有相同的 `name`，适用于多选一，提交时只提交选中值。
+
+### 其它
+
+样式调整
+表单校验
+表单提交
+
+## 其它
+
+### data attributes
+
+`data-*` 属性
+
 ## 位置
 
-[上次阅读到](https://developer.mozilla.org/en-US/docs/Learn/Forms)
+[上次阅读到](https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes)
