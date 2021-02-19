@@ -2,9 +2,6 @@
 
 添加 `class` 属性，来给元素添加样式
 元素标签加 `class` 选中带有 `class` 属性的特定类型的元素。
-后代组合选择器，祖先标签 + 空格 + 目标标签
-相邻兄弟选择器，兄弟标签 + `+` + 目标标签
-状态选择器，比如 `a` 链接的悬浮，激活，访问过，焦点。
 
 语法：
 
@@ -325,4 +322,17 @@ TODO display属性 inline-flex
 图片如果不设置宽高，会使用图片的固有尺寸。
 `<div>` 元素如果不设置宽高，会根据内容设置尺寸。
 
-阅读到[这里](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Sizing_items_in_CSS#percentage_margins_and_padding)
+`margin` 和 `padding` 如果使用百分比都是相对于容器的宽度计算的。
+
+弹性尺寸，`max-width` 最大宽度， `min-width` 最小宽度，
+
+## 替换元素
+
+使用 `object-fit` 可以让替换元素动态调整自己的内容。
+
+* `cover` 保持宽高比，某一条边顶边后裁剪。
+* `contain` 保持宽高比，某一条边顶边后，另一边留白。
+
+阅读到[这里](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Images_media_form_elements#replaced_elements_in_layout)
+
+
