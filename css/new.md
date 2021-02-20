@@ -328,11 +328,124 @@ TODO display属性 inline-flex
 
 ## 替换元素
 
-使用 `object-fit` 可以让替换元素动态调整自己的内容。
+可以使用 `max-width: 100%;` 让替换元素动态调整自己的尺寸。
+也可使用 `object-fit` 固定尺寸缩放图片，不会修改盒模型的尺寸。
 
 * `cover` 保持宽高比，某一条边顶边后裁剪。
 * `contain` 保持宽高比，某一条边顶边后，另一边留白。
+* `fill` 不保持宽高比，占满空间
+* `none` 图片尺寸不变，只展示图片的一部分或留白并居中。
+* `scale-down`: `contain` 或 `none`
 
-阅读到[这里](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Images_media_form_elements#replaced_elements_in_layout)
+## 表单
 
+表单元素默认不继承字体样式，可以手动添加。
+全部设置盒模型为替补盒模型。
+`textarea` 手动设置 `overflow: auto`
 
+```css
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+textarea {
+  overflow: auto;
+}
+```
+
+## 表格
+
+1. `HTML` 结构完整清晰。
+1. 宽度使用百分比，布局更具有响应式
+1. `table-layout`
+    * `auto`，自动调整每列宽度。
+    * `fixed`，固定每列宽度。
+1. `border-collapse`
+    * `collapse` 合并，样式使用左侧或上侧单元格的边框。
+    * `separate` 分离，单元格之间空隙由 `border-spacing` 控制。
+1. 使用 `nth-child` 等伪元素区分不同行。
+1. `caption-side` 标题位置 `top` 或 `bottom`
+1. 边框只能应用到单元格上。
+
+## 问题排查
+
+1. 暂停一会，重新检查
+2. 是否有书写错误
+3. 兼容性
+4. 优先级
+5. 使用排除法，排除无关环境，排除无关js，无关HTML，无关CSS
+
+## 自定义变量
+
+语法：使用双连字符定义，`var()` 函数使用，大小写敏感，例子：
+
+```css
+p {
+  --main-bg-color: brown;
+  background-color: var(--main-bg-color);
+}
+```
+
+变量定义需在规则块中，外部无法使用，变量会被子元素继承。
+如果想要全局使用变量，可以在伪类 `:root` 中定义。
+`var` 函数接受剩余参数作为备选项，如果备选项包括变量，需要使用 `var`。
+如果计算出的值无法使用，不会被忽略，而是使用 `inherit` 或 `initial`
+
+`js` 中使用
+
+```js
+// 设置
+element.style.setProperty("--my-var", jsVar + 4);
+
+// 查询
+element.style.getProperty("--my-var");
+```
+
+## 高级概念
+
+### box-shadow
+
+前两个是偏移量，第三个是模糊度，第四个值是扩散半径，最后一个是颜色。
+还有 `inset` 表示内部阴影。
+可以有多个，以逗号分隔。
+一般阴影大小与元素相同，可使用扩散半径改变阴影大小。
+
+### filter
+
+取值：
+
+`url()` 使用svg
+`blur` 虚化，使用距离，单位为 `px`
+`grayscale` 颜色消除器，使用百分比
+`brightness` 调整亮度，百分比
+`contrast` 对比度，百分比
+`invert` 反转 百分比
+`hue-rotate` 色调旋转，单位deg
+`drop-shadow` 阴影，包括盒子里的内容
+
+可以同时使用多个值。
+
+### 混合模式
+
+### background-clip
+
+* `border-box` 边框及内部都能看到背景
+* `padding-box` 内边距及内部都能看到背景
+* `content-box` 只有内容可以看到背景
+* `text` 只有文字可以看到背景，文字颜色需要设为透明。
+
+### 形状
+
+* shape-outside 函数参数为百分比，根据宽度计算，宽度可以取4种尺寸
+  * inset
+  * ellipse
+  * polygon
+  * circle(50%)
+shape-image-threshold
+shape-margin
+
+阅读到[这里](https://developer.mozilla.org/en-US/docs/Learn/CSS/Styling_text)
