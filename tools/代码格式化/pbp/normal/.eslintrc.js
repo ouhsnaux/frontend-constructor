@@ -6,10 +6,9 @@ module.exports = {
   },
   extends: [
     'eslint:recommended',
+    'airbnb-base',
     'prettier',
-    'plugin:prettier/recommended',
-    'plugin:import/errors',
-    'plugin:import/warnings'
+    'plugin:prettier/recommended'
   ],
   parser: 'babel-eslint',
   plugins: ['import'],

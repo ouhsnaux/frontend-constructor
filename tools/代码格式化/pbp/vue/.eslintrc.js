@@ -6,8 +6,7 @@ module.exports = {
   extends: [
     'plugin:vue/essential',
     'eslint:recommended',
-    'plugin:import/errors',
-    'plugin:import/warnings',
+    'airbnb-base',
     '@vue/prettier'
   ],
   plugins: ['import'],
