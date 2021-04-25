@@ -1,6 +1,6 @@
 # 用户代码片段
 
-## vue template
+## vue less template
 
 ``` json
 {
