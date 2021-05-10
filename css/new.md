@@ -3,7 +3,7 @@
 添加 `class` 属性，来给元素添加样式
 元素标签加 `class` 选中带有 `class` 属性的特定类型的元素。
 
-语法：
+## 语法：
 
 1. 结构
   选择器 { 属性: 值; 属性: 值; …… }
@@ -449,3 +449,72 @@ shape-image-threshold
 shape-margin
 
 阅读到[这里](https://developer.mozilla.org/en-US/docs/Learn/CSS/Styling_text)
+
+## 文字布局
+
+### 文字
+
+* color 颜色
+* font-family 字体
+* font-size 大小
+* font-style 字体样式，正常，斜体
+* font-weight 字重
+* text-transform 字体转化 大小写相关
+* text-decoration 修饰线
+* text-shadow 文字阴影，多阴影使用逗号隔开
+
+缩写
+
+style,weight,size/line-height,font-family
+
+### 自定义字体
+
+```css
+@font-face {
+  font-family: "myFont";
+  src: url("myFont.woff2");
+}
+```
+
+### 文本布局
+
+* text-align 文本对齐
+* line-height 行高
+* letter-spacing 字母间隙
+* word-spacing 单词间隙
+* text-indent 文本缩进
+* text-overflow 文本溢出展示
+* white-space 空白符如何处理
+  * nowrap 空白符与换行符合并
+  * pre 格式保留
+  * pre-wrap 格式保留，自动换行
+  * pre-line 空白符合并，换行符保留，自动换行
+  * break-spaces 与 pre-wrap类似，不过行尾空白符过多会触发自动换行
+* word-break 单词中断
+  * normal 正常
+  * break-all 单词截断换行显示，遇到下一个长单词不换行
+  * keep-all 不换行
+  * break-word 单词截断，遇到下一个长单词换行，不推荐
+
+### 列表
+
+* list-style-type 修饰类型
+* list-style-position 
+* list-style-image
+
+<!-- TODO 检查是否已有更改 -->
+
+### 链接
+
+伪类区分状态
+
+* link 拥有目的地址的链接
+* visited
+* hover
+* focus
+* active
+
+相关样式
+
+* cursor 悬浮时鼠标类型
+* outline 聚焦时外部轮廓
