@@ -25,12 +25,28 @@ module.exports = {
         htmlWhitespaceSensitivity: 'ignore',
       },
     ],
+    'import/extensions': ['error', 'always', {
+      js: 'never',
+      mjs: 'never',
+      jsx: 'never',
+      ts: 'never',
+      tsx: 'never',
+      vue: 'never'
+    }]
   },
+  // settings: {
+  //   'import/resolver': {
+  //     webpack: {
+  //       config: './build/local.config.js', // 你本地的 webpack 配置
+  //     },
+  //   }
+  // },
   settings: {
     'import/resolver': {
-      webpack: {
-        config: './build/local.config.js', // 你本地的 webpack 配置
+      alias: {
+        map: [['@', './src']],
+        extensions: ['.vue', '.json', '.js'],
       },
-    }
+    },
   }
 }

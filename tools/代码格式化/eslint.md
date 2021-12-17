@@ -356,6 +356,8 @@ eslint -c myconfig.json myfiletotest.js
     }
     ```
 
+在 `vue` 项目中，修改 `vue.config.js`，通过 `lintOnSave` 控制是否输出校验信息。
+
 ## 参考文献
 
 [eslint 中文网](https://cn.eslint.org/)
