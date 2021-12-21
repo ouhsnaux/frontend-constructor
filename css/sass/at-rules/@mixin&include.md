@@ -1,12 +1,13 @@
 # @mixin & @include
 
-* 作用
-* 参数
-  * 可选参数
-  * 指定参数名
-  * 不定参数数量
-* 内容块
-  * 参数
+- [@mixin & @include](#mixin--include)
+  - [作用](#作用)
+  - [参数](#参数)
+    - [可选参数](#可选参数)
+    - [指定参数名](#指定参数名)
+    - [不定参数数量](#不定参数数量)
+  - [内容块](#内容块)
+    - [代码块参数](#代码块参数)
 
 ## 作用
 
@@ -54,7 +55,7 @@
 
 ```scss
 // index.scss
-@mixin color ($color) {
+@mixin color($color) {
   .a {
     color: $color;
     @content;
@@ -89,7 +90,7 @@
 @mixin media($types...) {
   @each $type in $types {
     @media #{$type} {
-      @content($type);
+      @content ($type);
     }
   }
 }
