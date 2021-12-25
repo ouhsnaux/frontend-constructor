@@ -75,7 +75,7 @@ float元素和绝对定位元素不会合并。
 2. 不占满父元素的宽度，宽高有作用
 3. 内外边距和边框有作用，可以把其他元素推开。
 
-<!-- TODO BFC -->
+TODO display属性 inline-flex
 
 ## 背景和边框
 
@@ -292,6 +292,8 @@ element.style.getProperty("--my-var");
 
 ## 高级概念
 
+TODO 待补充
+
 ### box-shadow
 
 前两个是偏移量，第三个是模糊度，第四个值是扩散半径，最后一个是颜色。
@@ -333,24 +335,37 @@ element.style.getProperty("--my-var");
 shape-image-threshold
 shape-margin
 
-## 文字布局
 
-### 文字
+一些替换元素拥有内在尺寸和默认基线，需要修改 `vertical-align` 对齐。
+
+## 文本样式
+
+### fundamental text & font styling
+
+#### 字体属性
 
 * color 颜色
 * font-family 字体
 * font-size 大小
-* font-style 字体样式，正常，斜体
-* font-weight 字重
-* text-transform 字体转化 大小写相关
-* text-decoration 修饰线
-* text-shadow 文字阴影，多阴影使用逗号隔开
+* font-style 样式，正常，斜体，倾斜，有些字体有专门的斜体，倾斜只是简单的倾斜。
+* font-weight 粗体
+* text-transform 转换
+  * none
+  * uppercase
+  * lowercase
+  * capitalize 首字母大写
+* text-decoration 修饰, 可以接受多个值，是位置，样式和颜色的简写。
+  * text-decoration-line
+    * none
+    * underline
+    * overline
+    * line-through  
+  * text-decoration-color
+  * text-decoration-style
+    * wavy 波浪线
+* text-shadow 阴影，可以有多个，值包括左右偏移量，模糊度和颜色。
 
-缩写
-
-style,weight,size/line-height,font-family
-
-### 自定义字体
+#### 自定义字体
 
 ```css
 @font-face {
@@ -359,35 +374,69 @@ style,weight,size/line-height,font-family
 }
 ```
 
-### 文本布局
+#### 文本布局
 
-* text-align 文本对齐
-* line-height 行高
-* letter-spacing 字母间隙
-* word-spacing 单词间隙
-* text-indent 文本缩进
-* text-overflow 文本溢出展示
-* white-space 空白符如何处理
-  * nowrap 空白符与换行符合并
-  * pre 格式保留
-  * pre-wrap 格式保留，自动换行
-  * pre-line 空白符合并，换行符保留，自动换行
-  * break-spaces 与 pre-wrap类似，不过行尾空白符过多会触发自动换行
-* word-break 单词中断
-  * normal 正常
-  * break-all 单词截断换行显示，遇到下一个长单词不换行
-  * keep-all 不换行
-  * break-word 单词截断，遇到下一个长单词换行，不推荐
+* text-align 对齐方式 左中右两端对齐
+* line-height 行高，除常规值，也可以是一个无单位的数字，表示字体大小的倍数。
+* letter-spacing 字母距离
+* word-spacing 单词距离
+* text-indent 首行缩进
+* text-overflow
+  * ellipse …
+  * clip 隐藏
+* white-space
+  * normal 合并空白符，自动换行
+  * nowrap 合并空白符，不换行
+  * pre 保留空白符，遇到换行符换行，不自动换行
+  * pre-wrap 保留空白符，遇到换行符换行，自动换行
+  * pre-line 合并空白符，遇到换行符换行，自动换行
+  * break-spaces 类似 `pre-wrap`
+* word-break
+  * normal
+  * break-all 随时切断单词自动换行
+  * keep-all 不切断单词，不自动换行
+  * break-word `normal + overflow-wrap: anywhere`
+* direction ltr, rtl
+* hyphens
+  * none 无
+  * manual 一个
+  * auto 自动
+* line-break
+* text-align-last 最后一行对齐方式
+* text-orientation 文字方向，与 `writing-mode` 配合使用
+* overflow-wrap 换行文字从下一行开始，`word-break` 从本行开始
+  * normal
+  * anywhere
+  * break-word
+* writing-mode
 
-### 列表
+### list
 
-* list-style-type 修饰类型
-* list-style-position 
+样式，可使用 `list-style` 简写，设置到列表上
+
+* list-style-type 类型
+  * upper-roman 罗马数字
+  * square 方框
+* list-style-position
+  * inside
+  * outside
 * list-style-image
 
-<!-- TODO 检查是否已有更改 -->
+索引，html属性，不是css属性
 
-### 链接
+* start 有序列表的第一个索引
+* reserved 倒序
+* value 设置当前索引号，设置到单项
+
+图标无法调整位置，需要调整的话使用背景图片方案。
+
+关于图标计数的高阶用法：
+
+* [@counter-style](https://developer.mozilla.org/en-US/docs/Web/CSS/@counter-style)
+* [counter-increment](https://developer.mozilla.org/en-US/docs/Web/CSS/counter-increment)
+* [counter-reset](https://developer.mozilla.org/en-US/docs/Web/CSS/counter-reset)
+
+### links
 
 伪类区分状态
 
