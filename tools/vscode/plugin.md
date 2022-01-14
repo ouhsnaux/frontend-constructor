@@ -30,3 +30,4 @@
 * Auto Close Tag / Auto Rename Tag - html标签
 * css peek - 快速跳转到css定义
 * code spell check - 拼写检查
+* any-rule - 正则
