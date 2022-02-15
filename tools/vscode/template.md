@@ -36,3 +36,13 @@
  }
 }
 ```
+
+markdown 不生效，需要额外配置
+
+```json
+{
+  "[markdown]": {
+    "editor.quickSuggestions": true
+  }
+}
+```
