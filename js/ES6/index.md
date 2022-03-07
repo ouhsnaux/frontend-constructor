@@ -45,10 +45,18 @@
     // 替换
     let re = /(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/u;
     '2015-01-02'.replace(re, '$<day>/$<month>/$<year>')
+
+    // 正则内部使用具名组匹配 \k<组名>
+    const RE_TWICE = /^(?<word>[a-z]+)!\k<word>$/;
+    RE_TWICE.test('abc!abc') // true
+    RE_TWICE.test('abc!ab') // false
     ```
+
+* indices 执行exec返回结果的开始和结束索引
+* matchAll，相当于循环调用match
 
 ## 进展
 
-第6章
+第8章
 
-<https://es6.ruanyifeng.com/#docs/regex#%E5%BC%95%E7%94%A8>
+<https://es6.ruanyifeng.com/#docs/function>
