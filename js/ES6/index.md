@@ -55,6 +55,57 @@
 * indices 执行exec返回结果的开始和结束索引
 * matchAll，相当于循环调用match
 
+## 函数
+
+* rest
+* 箭头函数，简洁，没有 `prototype, arguments, caller`
+  * 没有自己的this，取定义时所在作用域的this
+  * 不可以当作构造函数，没有prototype
+  * 不可以使用arguments对象
+  * <!-- TODO --> 不可以使用yield命令，因此箭头函数不能用作 Generator 函数。
+* 尾调用：函数的最后一步是调用另一个函数。
+  * 不能有其它操作，不能不返回值。
+  * 内层函数不能使用外层函数的变量。
+  * 可以减少函数调用栈，释放内层变量等空间。
+  * 应用：递归函数，尾递归，调用栈空间减少到1。
+  * 改写套路：把所有用到的内部变量改写成函数的参数。
+  * 只有严格模式可用
+  * 手段是较少调用栈，避免溢出，可以改造成循环
+
+      ```js
+      function tco(f) {
+        var value;
+        var active = false;
+        var accumulated = [];
+
+        return function accumulator() {
+          accumulated.push(arguments);
+          if (!active) {
+            active = true;
+            while (accumulated.length) {
+              value = f.apply(this, accumulated.shift());
+            }
+            active = false;
+            return value;
+          }
+        };
+      }
+
+      var sum = tco(function(x, y) {
+        if (y > 0) {
+          return sum(x + 1, y - 1)
+        }
+        else {
+          return x
+        }
+      });
+
+      sum(1, 100000)
+      // 100001
+      ```
+
+* 柯里化，将多参数的函数转换成单参数的形式 <!-- TODO 深入 -->
+
 ## 进展
 
 第8章
