@@ -106,6 +106,41 @@
 
 * 柯里化，将多参数的函数转换成单参数的形式 <!-- TODO 深入 -->
 
+## 数组
+
+* ... 扩展运算符，empty => undefined，解构数组只能在函数传参中使用，复制没有此限制
+* Array.from，将类数组和包含遍历器的对象转化为数组，第二个参数接收map函数，empty => undefined
+* Array.of
+* copyWithin
+* find, findIndex
+* fill，第二第三个参数可以指定起始位置，填充结果都是浅拷贝
+* entries, keys, values,返回遍历器对象
+* includes 第二个参数表示开始位置，大于数组长度则从0开始
+* indexOf的问题
+  * 不够语义化，需要对结果与-1比较
+  * 比较使用严格相等，对NaN判断出错
+* flat,第一个参数表示拉平的层数，默认是1。
+* flatMap先执行map函数，再拉平一层
+* at，取值，支持负数
+* sort方法是稳定的
+
+## 对象
+
+* 属性遍历方法
+  * for in，会遍历原型链，需配合 Object.hasOwnProperty
+  * Object.keys 自身可枚举属性
+  * Object.getOwnPropertyNames，自身属性，包括不可枚举
+  * Object.getOwnPropertySymbols，自身 `Symbol` 类型的属性，前面的方法都不包括
+  * Reflect.ownKeys(obj)，自身所有属性，相当于上两个方法的和
+* 属性遍历顺序
+  * 首先遍历所有数值键，按照数值升序排列。
+  * 其次遍历所有字符串键，按照加入时间升序排列。
+  * 最后遍历所有 Symbol 键，按照加入时间升序排列。
+* super，this执行调用函数的对象，super指向该对象的原型对象，只能用在方法中 <!-- TODO -->[super](https://es6.ruanyifeng.com/#docs/object#super-%E5%85%B3%E9%94%AE%E5%AD%97)
+* 解构赋值
+* 扩展运算符，等同于`Object.assign`
+* AggregateError，同时触发多个错误时使用
+
 ## 进展
 
 第8章
