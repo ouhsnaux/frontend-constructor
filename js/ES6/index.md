@@ -133,7 +133,7 @@
   * Object.getOwnPropertySymbols，自身 `Symbol` 类型的属性，前面的方法都不包括
   * Reflect.ownKeys(obj)，自身所有属性，相当于上两个方法的和
 * 属性遍历顺序
-  * 首先遍历所有数值键，按照数值升序排列。
+  * 首先遍历所有数值（自然数）键，按照数值升序排列。
   * 其次遍历所有字符串键，按照加入时间升序排列。
   * 最后遍历所有 Symbol 键，按照加入时间升序排列。
 * super，this执行调用函数的对象，super指向该对象的原型对象，只能用在方法中 <!-- TODO [super](https://es6.ruanyifeng.com/#docs/object#super-%E5%85%B3%E9%94%AE%E5%AD%97) -->
@@ -165,6 +165,34 @@
 * 引入原因：保证每个属性的名字都是独一无二，从根本上防止属性名的冲突。
 * description
 * 消除魔术字符串
+* Symbol.for, Symbol.keyFor, 在 `iframe, service worker` 中都能共享同一个值。
+* 内置值
+  * hasInstance
+  * isConcatSpreadable
+  * species
+  * match, replace, search, split
+  * iterator
+  * toPrimitive，3种模式
+    * Number：该场合需要转成数值
+    * String：该场合需要转成字符串
+    * Default：该场合可以转成数值，也可以转成字符串
+  * toStringTag `[Object xxx]`
+  * unscopables
+
+## Set
+
+* Set 成员都唯一（NaN=NaN，-0=+0），可以接受一个数组（或具有iterable）作为参数
+* set属性和方法，size, add, delete, has, clear
+* 使用set去重，使用扩展运算符和Array.from转化为数组
+* 遍历器keys, values, entries 遍历方法forEach，key与value相同，都是其中的值
+* WeakSet 成员只能是弱引用类型，不会被计入内存回收机制
+  * 不能遍历
+  * 引用类型，所以只能是对象
+
+## Map
+
+* 键值可以是任意数据类型，不仅仅接受二维数组，任何具有 Iterator 接口、且每个成员都是一个双元素的数组的数据结构都可以使用
+* 属性和方法，set,get,has,delete
 
 ## 进展
 
@@ -176,3 +204,7 @@
 
 * [[PrimitiveValue]]，双括号是什么东西，能否访问，怎么用
 * 正则的source是从原型对象上获取的存取器计算得到的，是怎么计算的
+* 单例模式，不使用全局变量存储的原因是，可被修改。
+* Symbol.toPrimitive
+* [Symbol 单例模式最后一段](https://es6.ruanyifeng.com/#docs/symbol#%E5%AE%9E%E4%BE%8B%EF%BC%9A%E6%A8%A1%E5%9D%97%E7%9A%84-Singleton-%E6%A8%A1%E5%BC%8F)
+* with, Symbol.unscopables
