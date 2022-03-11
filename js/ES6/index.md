@@ -136,13 +136,43 @@
   * 首先遍历所有数值键，按照数值升序排列。
   * 其次遍历所有字符串键，按照加入时间升序排列。
   * 最后遍历所有 Symbol 键，按照加入时间升序排列。
-* super，this执行调用函数的对象，super指向该对象的原型对象，只能用在方法中 <!-- TODO -->[super](https://es6.ruanyifeng.com/#docs/object#super-%E5%85%B3%E9%94%AE%E5%AD%97)
+* super，this执行调用函数的对象，super指向该对象的原型对象，只能用在方法中 <!-- TODO [super](https://es6.ruanyifeng.com/#docs/object#super-%E5%85%B3%E9%94%AE%E5%AD%97) -->
 * 解构赋值
-* 扩展运算符，等同于`Object.assign`
+* 扩展运算符，等同于`Object.assign`，无法复制存取器，得到的是计算后的值。
 * AggregateError，同时触发多个错误时使用
+* Object.is，NaN相同，-0不等于+0，其它与强相等相同
+* `__proto__, Object.getPrototypeOf, Object.setPrototypeOf` <!-- TODO [__proto__实现](https://es6.ruanyifeng.com/#docs/object-methods#__proto__%E5%B1%9E%E6%80%A7) -->
+* Object.create，第二个参数会被执行 `Object.defineProperties`，并且默认不可遍历
+* `Object.keys, Object.values, Object.entries` 遍历器
+  * 对象转Map `new Map(Object.entries(obj))`
+* `Object.fromEntires`, Object.entries的逆操作
+  * Map转对象 `Object.fromEntries(map)`
+  * url参数转对象 `Object.fromEntries(new URLSearchParams('foo=bar&baz=qux'))`
+
+## 运算符
+
+* `**` 指数运算符，右结合
+* `?.` 键判断运算符，有短路机制 `s?.a` 相当于 `s == null ? undefined : s.a`
+  * `obj?.prop` // 对象属性是否存在
+  * `obj?.[expr]` // 同上
+  * `func?.(...args)` // 函数或对象方法是否存在
+  * 右侧不能直接跟数字，语法与三元运算符重合
+* `??` null判断运算符，只有 `null, undefined` 时才使用默认值
+* `&&=, ||=, ??=` 逻辑赋值运算符
+
+## Symbol
+
+* 引入原因：保证每个属性的名字都是独一无二，从根本上防止属性名的冲突。
+* description
+* 消除魔术字符串
 
 ## 进展
 
 第8章
 
-<https://es6.ruanyifeng.com/#docs/function>
+<https://es6.ruanyifeng.com/#docs/symbol#Symbol-for%EF%BC%8CSymbol-keyFor>
+
+## TODO
+
+* [[PrimitiveValue]]，双括号是什么东西，能否访问，怎么用
+* 正则的source是从原型对象上获取的存取器计算得到的，是怎么计算的
