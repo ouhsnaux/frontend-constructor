@@ -181,7 +181,8 @@
 
 ## Set
 
-* Set 成员都唯一（NaN=NaN，-0=+0），可以接受一个数组（或具有iterable）作为参数
+* Set 成员都唯一（NaN=NaN，-0=+0）
+* set 可以接受一个数组（或具有iterable）作为参数
 * set属性和方法，size, add, delete, has, clear
 * 使用set去重，使用扩展运算符和Array.from转化为数组
 * 遍历器keys, values, entries 遍历方法forEach，key与value相同，都是其中的值
@@ -191,14 +192,32 @@
 
 ## Map
 
-* 键值可以是任意数据类型，不仅仅接受二维数组，任何具有 Iterator 接口、且每个成员都是一个双元素的数组的数据结构都可以使用
-* 属性和方法，set,get,has,delete
+* 键名可以是任意数据类型
+* map不仅仅接受二维数组，任何具有 Iterator 接口、且每个成员都是一个双元素的数组的数据结构都可以使用
+* 属性和方法，size, set,get,has,delete,clear
+* 遍历
+  * 遍历器keys, values, entries，内部Iterator就是entries
+  * 遍历方法forEach，第一个参数为函数，其参数顺序为value, key, map
+  * 遍历顺序为插入顺序
+* WeakMap键名与WeakSet成员类似
+
+## WeakRef
+
+* 用于创建弱引用的数据结构
+* deref方法，如果还存在返回该对象
+
+## FinalizationRegistry
+
+* 通过给构造函数传递回调，生成清理器
+* 清理器register监听数据，被回收时调用上一步的回调函数，unregister取消监听
+
+## Proxy
 
 ## 进展
 
-第8章
+第15章
 
-<https://es6.ruanyifeng.com/#docs/symbol#Symbol-for%EF%BC%8CSymbol-keyFor>
+<https://es6.ruanyifeng.com/#docs/proxy>
 
 ## TODO
 
