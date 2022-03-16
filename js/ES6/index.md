@@ -280,6 +280,16 @@
 
 拦截器中this指向handler
 
+## Reflect
+
+1. 将对象操作从Object上转移到 `Reflect`
+2. 修改返回结果，使其更合理
+3. 命令式改为函数式
+4. 总共有13个方法与Proxy一一对应。
+
+receiver为存取器中的this指向的对象。
+在proxy的set中如果调用了Reflect.set，并且传入了receiver，还会调用proxy的defineProperty
+
 ## 进展
 
 第15章
