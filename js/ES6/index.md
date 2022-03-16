@@ -213,6 +213,73 @@
 
 ## Proxy
 
+* 代理对对象的访问，可以改变常规代码写法，也可以作为工具写第三方代码
+* 语法：`new Proxy(target, handler)`，参数为目标对象和拦截行为
+  * 未定义的拦截行为，操作与访问对象相同
+  * 可以将代理设置为对象的proxy属性，方便调用
+* 13种拦截操作
+  * 对象常用操作4个
+    * get(target, propKey, receiver): 拦截读取属性
+      * receiver总是指向原始的读操作所在的那个对象，一般情况下就是 Proxy 实例。当proxy作为原型对象时，指向对象
+      * 如果一个属性不可配置（configurable）且不可写（writable），返回值必须与其值相同
+    * set(target, propKey, value, receiver): 拦截设置属性
+      * 不可写时，无法设置
+      * receiver总是指向原始的读操作所在的那个对象，一般情况下就是 Proxy 实例。
+      * 返回true
+    * has(target, propKey) 拦截in操作 返回boolean，不可拦截不可配置的属性和不可扩展的对象中已存在的属性
+    * deleteProperty(target, propKey) 拦截delete操作，
+      * 返回boolean，返回true表示删除成功
+      * 不可配置的属性不可删除
+  * 属性描述符相关5个
+    * ownKeys(target) 拦截获取key相关操作，包括以下几种
+      * Object.keys
+      * Object.getOwnPropertyNames
+      * Object.getOwnPropertySymbols
+      * for in
+      * 返回结果依然会根据情况过滤，不存在的属性直接过滤
+      * 返回的数组成员只能是字符串或 symbol，不可配置的属性必须返回
+      * 如果目标对象不可扩展，返回结果需与其中的属性方法保持完全一致
+      * 可以改变遍历顺序
+    * getOwnPropertyDescriptor(target, propKey) 拦截获取属性描述符详情
+    * defineProperty(target, propKey, propDesc) 拦截定义属性描述符，返回布尔值
+      * Object.defineProperty(target, propKey, propDesc)
+      * Object.defineProperties(target, propDescs);
+    * preventExtensions(target) 拦截禁止扩展，返回boolean
+      * 只有不可扩展时才能返回true，通常需要在内部调用一次Object.preventExtensions(target);
+    * isExtensible(target) 拦截查询是否可扩展，返回boolean，必须与能否扩展保持一致
+  * 原型相关2个
+    * getPrototypeOf(target) 拦截获取原型对象
+      * 拦截方法
+        * Object.prototype.__proto__
+        * Object.prototype.isPrototypeOf()
+        * Object.getPrototype
+        * Reflect.getPrototypeOf
+        * instance of
+    * setPrototypeOf(target, proto) 拦截设置原型对象，不可扩展的对象不得改变目标对象的原型
+  * 函数对象相关2个
+    * apply(target, thisBinding, args) 拦截函数调用，thisBinding指this
+      * 直接调用
+      * call,apply
+      * bind
+    * constructor(target, args, newTarget) 拦截作为构造函数调用，
+      * target必须是函数
+      * newTarget是创造实例对象时，new命令作用的构造函数
+      * 返回结果必须是对象
+      * this指向handler
+
+### Proxy.revocable
+
+返回一个代理实例和一个回收实例的方法，回收后无法访问代理。
+
+### this执行
+
+访问目标对象的方法时：
+
+* proxy调用时，一般指向proxy
+* 目标对象调用时，一般指向目标对象
+
+拦截器中this指向handler
+
 ## 进展
 
 第15章
@@ -227,3 +294,4 @@
 * Symbol.toPrimitive
 * [Symbol 单例模式最后一段](https://es6.ruanyifeng.com/#docs/symbol#%E5%AE%9E%E4%BE%8B%EF%BC%9A%E6%A8%A1%E5%9D%97%E7%9A%84-Singleton-%E6%A8%A1%E5%BC%8F)
 * with, Symbol.unscopables
+* 对proxy使用解构赋值使用响应式的原因
