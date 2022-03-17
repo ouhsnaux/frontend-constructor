@@ -290,6 +290,41 @@
 receiver为存取器中的this指向的对象。
 在proxy的set中如果调用了Reflect.set，并且传入了receiver，还会调用proxy的defineProperty
 
+## Promise
+
+异步编程的一种解决方案，finally总是返回传入的值和抛出原始错误
+Promise.any 抛出的错误类型是AggregateError
+
+## Iterator
+
+遍历器，提供了一种遍历所有数据类型的方法。主要与 for of 配合。
+包含一个next函数，每次调用返回一个包含value和done的对象。done: false和value: undefined属性都是可以省略的，
+return 函数，可选，遇到break或出错时调用
+<!-- TODO throw 函数，一般配合generator函数 -->
+
+Iterator接口部署在数据的Symbol.iterator属性，值是一个返回Iterator的函数。数组等可遍历的数据类型内置了Symbol.iterator属性，给其他数据类型添加时，可以借用。
+
+内置遍历器的数据类型：
+
+* Array
+* Map
+* Set
+* arguments
+* TypedArray
+* String
+* NodeList
+
+调用 Iterator 接口的场合：
+
+* 解构赋值
+* 扩展运算符
+* yield*
+* 其它接受数组作为参数的场合
+  * for of
+  * Array.from
+  * Map, Set, WeakMap, WeakSet
+  * Promise.all, Promise.race
+
 ## 进展
 
 第15章
@@ -305,3 +340,10 @@ receiver为存取器中的this指向的对象。
 * [Symbol 单例模式最后一段](https://es6.ruanyifeng.com/#docs/symbol#%E5%AE%9E%E4%BE%8B%EF%BC%9A%E6%A8%A1%E5%9D%97%E7%9A%84-Singleton-%E6%A8%A1%E5%BC%8F)
 * with, Symbol.unscopables
 * 对proxy使用解构赋值使用响应式的原因
+* 事件循环
+* 宏任务，微任务，为什么区分
+* await怎么同时发多个请求
+* promise A+规范及实现
+* axios源码
+* <https://es6.ruanyifeng.com/#docs/promise#Generator-%E5%87%BD%E6%95%B0%E4%B8%8E-Promise-%E7%9A%84%E7%BB%93%E5%90%88>
+* <https://es6.ruanyifeng.com/#docs/iterator#Iterator-%E6%8E%A5%E5%8F%A3%E4%B8%8E-Generator-%E5%87%BD%E6%95%B0>
