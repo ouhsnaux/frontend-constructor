@@ -325,6 +325,14 @@ Iterator接口部署在数据的Symbol.iterator属性，值是一个返回Iterat
   * Map, Set, WeakMap, WeakSet
   * Promise.all, Promise.race
 
+## Generator
+
+也是一种异步解决方案。可以理解为一个状态机。
+
+语法上，function与函数名之间有一个星号，内部使用yield表示一个状态，后面跟返回的结果。
+
+执行generator函数返回一个遍历器，调用next方法，执行到yield或return
+
 ## 进展
 
 第15章
