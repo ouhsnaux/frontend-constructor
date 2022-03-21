@@ -329,9 +329,151 @@ Iterator接口部署在数据的Symbol.iterator属性，值是一个返回Iterat
 
 也是一种异步解决方案。可以理解为一个状态机。
 
-语法上，function与函数名之间有一个星号，内部使用yield表示一个状态，后面跟返回的结果。
+### 语法
 
-执行generator函数返回一个遍历器，调用next方法，执行到yield或return
+* function与函数名之间有一个星号，内部使用yield表示一个状态，后面跟返回的结果。
+* 作为方法的简写是 `* func() {}`
+* generator函数返回一个遍历器，调用next方法，执行到yield或return，
+* 该遍历器正好可以被 `for of` 等使用，注意最后的 `return` 表达式不会被遍历。
+* next可以传值，替换上一个yield表达式
+
+### 错误处理
+
+* generator.throw() 抛出错误，可多次调用，先内部捕获再外部捕获。
+* 内部捕获后会继续执行到yield。
+* 如果内部没有捕获错误，出错会结束generator，下次调用返回 { done: true, value: undefined }
+
+### 终结
+
+* generator.return 返回给定的值，并终结遍历Generator函数
+* 如果内部有 `try finally` 先执行 `finally` ，不得不说 `finally` 优先级太高了
+
+```js
+function* numbers () {
+  yield 1;
+  try {
+    yield 2;
+    yield 3;
+  } finally {
+    yield 4;
+    yield 5;
+  }
+  yield 6;
+}
+var g = numbers();
+g.next() // { value: 1, done: false }
+g.next() // { value: 2, done: false }
+g.return(7) // { value: 4, done: false }
+g.next() // { value: 5, done: false }
+g.next() // { value: 7, done: true }
+```
+
+### 嵌套
+
+ `yield *` 在generator函数中自动执行遍历器或遍历带有遍历器的对象，
+
+```js
+function* concat(iter1, iter2) {
+  yield* iter1;
+  yield* iter2;
+}
+
+// 等同于
+
+function* concat(iter1, iter2) {
+  for (var value of iter1) {
+    yield value;
+  }
+  for (var value of iter2) {
+    yield value;
+  }
+}
+```
+
+yield* 的返回值是内部被代理的generator函数return语句的返回值，注意 `return` 不会被遍历。
+
+通过遍历，可以用于扁平化数组，遍历二叉树
+
+### this
+
+* generator函数必须具有prototype，可以通过给其添加属性来复用。
+* generator内部最终返回的遍历器对象，而不是this，因此操作this可能不符合预期，可以通过 `gen.call(gen.prototype) 将属性添加到原型对象。
+* 不能作为构造函数与new一起使用
+
+### 含义
+
+* 用于实现状态机的最佳结构
+* Generator 函数被称为“半协程”（semi-coroutine），意思是只有 Generator 函数的调用者，才能将程序的执行权还给 Generator 函数。如果是完全执行的协程，任何函数都可以让暂停的协程继续执行。
+
+### 应用
+
+* 异步操作的同步表达，在异步函数内部的回调中调用遍历器的next
+* 控制流管理
+* 部署Iterator接口
+* 作为一种数据结构
+
+### 异步应用
+
+异步应用方案：
+
+* 回调，ES6自带方案，会引起回调函数地狱，语义化不够清晰
+* Promise，可以解决回调地狱，变函数嵌套为链式调用，语义化有所好转，但仍不够清晰
+* Generator，代码非常像同步，语义化清晰
+* 事件监听
+* 发布/订阅
+
+Generator运行流程如下：
+
+1. 协程A开始执行
+2. 协程A执行到一半，暂停，执行权转移到协程B
+3. 协程B交还执行权
+4. 协程A恢复执行
+
+#### Thunk
+
+JavaScript 语言是传值调用，还有一种传名调用，将表达式转化为直接返回的函数，这个临时函数就叫做Thunk。
+
+JavaScript的Thunk函数含义有所不同，Thunk函数替换的不是表达式，而是多参数函数，将其替换为只接受回调函数作为参数的单参数函数
+
+```js
+// 自动执行Generator，每个yield表达式必须是Thunk
+function run(fn) {
+  var gen = fn();
+
+  function next(err, data) {
+    var result = gen.next(data);
+    if (result.done) return;
+    result.value(next);
+  }
+
+  next();
+}
+
+function* g() {
+  // ...
+}
+
+run(g);
+```
+
+Thunk 函数并不是 Generator 函数自动执行的唯一方案。因为自动执行的关键是，必须有一种机制，自动控制 Generator 函数的流程，接收和交还程序的执行权。回调函数可以做到这一点，Promise 对象也可以做到这一点。
+
+## async
+
+generator的语法糖
+
+错误处理
+
+* try catch
+* await 后的异步函数后添加catch处理
+
+多个异步不互相依赖
+
+* 使用Promise.all
+* 使用变量暂存执行后的promise，后续await这个promise
+* forEach使用async不会阻塞，使用for或reduce
+
+顶层的await命令有点像，交出代码的执行权给其他的模块加载，等异步操作完成后，再拿回执行权，继续向下执行。
 
 ## Class
 
@@ -373,3 +515,4 @@ TODO [in 及之后](https://es6.ruanyifeng.com/#docs/class#in-%E8%BF%90%E7%AE%97
 * 之所以要引入一个新的前缀#表示私有属性，而没有采用private关键字，是因为 JavaScript 是一门动态语言，没有类型声明，使用独立的符号似乎是唯一的比较方便可靠的方法，能够准确地区分一种属性是否为私有属性。另外，Ruby 语言使用@表示私有属性，ES6 没有用这个符号而使用#，是因为@已经被留给了 Decorator。
 * 为什么子类的构造函数，一定要调用super()？原因就在于 ES6 的继承机制，与 ES5 完全不同。ES5 的继承机制，是先创造一个独立的子类的实例对象，然后再将父类的方法添加到这个对象上面，即“实例在前，继承在后”。ES6 的继承机制，则是先将父类的属性和方法，加到一个空的对象上面，然后再将该对象作为子类的实例，即“继承在前，实例在后”。这就是为什么 ES6 的继承必须先调用super()方法，因为这一步会生成一个继承父类的this对象，没有这一步就无法继承父类。
 * 6中原型继承，不包括class extends
+* 手写promise，状态使用generator
