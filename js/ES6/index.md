@@ -512,11 +512,134 @@ generator的语法糖
 * ES6的继承是可以继承内置构造函数的，ES5无法做到<!-- TODO 试试TS编译或babel编译 -->
 * 继承Object，不能使用super，只能使用new Object
 
-## 进展
+## 模块化
 
-第15章
+ES6之前的模块加载方案，只能在__运行时__确定依赖关系，以及输入和输出的变量。没办法做静态优化。__不存在动态更新__。__同步加载__
 
-<https://es6.ruanyifeng.com/#docs/proxy>
+* CommonJs 主要用于浏览器
+* AMD 主要用于服务器
+
+ES6的模块加载方案，尽量的__静态化__，使得编译时就能确定模块间的依赖关系，以及输入和输出的变量。__值会动态更新__。import命令具有提升效果，会提升到整个模块的头部，首先执行。这种行为的本质是，import命令是编译阶段执行的，在代码运行之前。由于import是静态执行，所以不能使用表达式和变量，这些只有在运行时才能得到结果的语法结构。通过函数调用的方式也可以__动态加载__
+
+* 单个
+* 多个
+* 默认
+* `*`
+* 别名
+
+export
+
+```js
+// 单个输出
+export var firstName = 'Michael';
+
+// 多个同时导出，导出已声明变量需要使用此方式
+export { firstName, lastName, year };
+
+// 别名
+export {
+  v1 as streamV1,
+  v2 as streamV2,
+  v2 as streamLatestVersion
+};
+
+// 默认导出
+// export default命令的本质是将后面的值，赋给default变量，
+export default function () {
+  console.log('foo');
+}
+// 也可以写作
+export {add as default};
+
+// 混合使用
+export default function (obj) {
+  // ···
+}
+export function each(obj, iterator, context) {
+  // ···
+}
+export { each as forEach };
+```
+
+import
+
+```js
+// 只执行，不导入，重复import只会执行一次
+import 'lodash';
+
+// 导入
+import { firstName, lastName, year } from './profile.js';
+
+// 别名
+import { lastName as surname } from './profile.js';
+
+// 整体加载并改名
+import * as circle from './circle';
+
+// 导入默认导出内容
+import customName from './export-default';
+// 也可以写作
+import { default as foo } from 'modules';
+
+// 混合使用
+import _, { each, forEach } from 'lodash';
+```
+
+export与import结合，导出其它模块的内容，本模块不能使用
+
+```js
+// 导出常规属性
+export { foo, bar } from 'my_module';
+
+// 导出并改名
+export { foo as myFoo } from 'my_module';
+
+// 导出所有属性，不包括default
+export * from 'my_module';
+// 并改名
+export * as ns from "mod";
+
+// 导出默认属性
+export { default } from 'foo';
+
+// 默认属性改名
+export { default as es6 } from './someModule';
+```
+
+import() 异步动态加载，返回Promise，应用场景：
+
+* 按需加载
+* 条件加载
+* 动态路径
+
+默认输出为结果的default属性
+
+### 加载实现
+
+#### 浏览器加载
+
+`<script>`引用使用import的文件或内容需指明type="module"。都会异步加载，不会阻塞，相当于添加了defer，可以明确指定使用async。
+
+#### 与CommonJS对比
+
+ES6 模块是动态引用，原始值变了，import加载的值也会跟着变。由于 ES6 输入的模块变量，只是一个“符号连接”，所以这个变量是只读的，对它进行重新赋值会报错。
+
+ES6 模块化简称ESM，CommonJS简称CJS
+
+Node规定，指定使用ESM需要后缀为.mjs或package.json指定 type="module"，如果还需要使用CJS，该文件后缀需要使用 `.cjs`
+
+#### package.json
+
+* main 指定模块加载的入口文件
+* exports 优先级高于 `main`
+  * 子目录别名,如果没有指定别名，就不能用“模块+脚本名”这种形式加载脚本。
+
+    ```javascript
+    // 指定src/submodule 别名为submodule
+    "exports": {
+      "./submodule": "./src/submodule.js"
+    }
+    ```
 
 ## TODO
 
@@ -539,3 +662,5 @@ generator的语法糖
 * 手写promise，状态使用generator
 * ES5 是先新建子类的实例对象this，再将父类的属性添加到子类上，由于父类的内部属性无法获取，导致无法继承原生的构造函数。比如，Array构造函数有一个内部属性[[DefineOwnProperty]]，用来定义新属性时，更新length属性，这个内部属性无法在子类获取，导致子类的length属性行为不正常。
 * 6中原型继承，不包括class extends，继承静态方法
+* 静态优化
+* <https://es6.ruanyifeng.com/#docs/module-loader#package-json-%E7%9A%84-exports-%E5%AD%97%E6%AE%B5>
