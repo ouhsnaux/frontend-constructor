@@ -292,7 +292,61 @@ receiver为存取器中的this指向的对象。
 
 ## Promise
 
-异步编程的一种解决方案，finally总是返回传入的值和抛出原始错误
+异步编程的一种解决方案
+
+### 术语
+
+* promise
+* thenable
+* value
+* exception
+* reason
+
+### 要求
+
+#### 状态
+
+* 三个状态，pending/fulfilled/rejected
+* 可以从pending转化到fulfilled或rejected，只能转化一次
+* fulfilled状态带有一个值，rejected带一个原因
+
+#### then
+
+* 接受两个可选参数onFulfilled和onRejected，必须是函数，否则被忽略
+* onFulfilled在转化为fulfilled之后执行，接受value作为第一个参数，只能执行一次
+* onRejected在转化为rejected之后执行，接受reason作为第一个参数，只能执行一次
+* 两个参数只能在执行上下文只有平台代码中执行，比如setTimeout, process.nextTick
+* 两个参数只能作为函数执行
+* then方法支持多次调用，当状态已转化或正在转化时，必须按照调用顺序执行对应的参数
+* then方法返回一个新的promise
+  * onFulfilled或onRejected返回x值，执行下一节的解决机制，[[Resolve]](promise2, x)
+  * onFulfilled或onRejected抛出e异常，返回一个rejected状态的promise，原因为e
+  * 如果此promise状态为fulfilled且onFulfilled参数不是函数，则生成一个fulfilled状态的promise，并且值与此promise相同
+  * 如果此promise状态为rejected且onRejected参数不是函数，则生成一个rejected状态的promise，并且原因与此promise相同
+
+#### 解决机制[[Resolve]]
+
+此机制为通过onFulfilled或onRejected返回的x生成新promise（记为promise2）的过程。
+这种机制也让不同的Promise A+实现方案之间可以交互。
+
+* 如果x等于promise2，会造成链式循环，则promise2的状态为rejected，并添加TypedError类型的原因
+* 如果x是promise
+  * 如果x的状态是pending，那么promise2的状态也是pending，直到x状态发生变化
+  * 当状态已转化或正在转化时，promise2的状态，值，原因与x相同
+* 如果x是对象或函数
+  * 记录当前x的then方法为then，防止后续then方法被改变
+  * 如果访问x.then方法出错，则promise2的状态是rejected，原因为访问中出的错
+  * 如果x是一个函数，将其this设为x，第一个参数为resolvePromise，第二个参数为rejectPromise
+    * 当resolvePromise被调用，且其参数为y，则递归调用[[Resolve]](promise2, y)
+    * 当rejectPromise被调用，且其参数为原因r，则promise2的状态是rejected，原因为r
+    * resolvePromise和rejectPromise只能被调用一个，且只能调用一次，其它调用都会被忽略
+    * 如果执行then的过程中，出错，且原因为e
+      * 如果resolvePromise或rejectPromise已经被调用过，忽略此错误
+      * 否则promise2的状态是rejected，原因为e
+  * 如果then不是一个函数，则promise2的状态为fulfilled，值为x
+* 如果不是对象或函数，则promise2的状态为fulfilled，其值为x
+
+finally总是返回传入的值和抛出原始错误
 Promise.any 抛出的错误类型是AggregateError
 
 ## Iterator
