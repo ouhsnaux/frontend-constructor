@@ -2,32 +2,35 @@
 
 文档追求全而不大，比目录更言之有物，比检索书更简洁。
 
-- 前端
-  - html
-  - css
-  - js
-  - 其它
-    - canvas
-    - svg
-  - 框架
-    - vue
-    - react
-  - 工具
-    - 代码规范
-    - mock
-    - 测试
-    - webpack
-    - npm
-    - 脚手架
--
--
--
-  - BEM,ATOM
-  - 预编译器 less,sass,postcss
-  - 框架,TailWindCSS
+- html
+- css
+  - less/scss/postcss
 - js
   - es6
   - ts
+- 图形化
+  - canvas
+  - svg
+  - webGL
+- 框架
+  - vue
+  - react
+- 浏览器
+- node
+- 安全
+- 工具
+  - 代码规范
+  - mock
+  - 测试
+  - webpack/rollup
+  - npm/yarn
+  - 脚手架
+  - vscode
+  - git
+- 常用功能
+-
+  - BEM,ATOM
+  - 框架,TailWindCSS
 - 框架
   - vue
     - vue2
@@ -58,14 +61,13 @@
   - 渲染流程
   - v8
   - devTools
+  - 插件
+    - 油猴
 - 计算机基础
   - 设计模式
   - 数据结构与算法
   - 网络
   - 操作系统
-- 可视化
-  - canvas
-  - svg
 - 工程化
   - 错误上报
   - 埋点
