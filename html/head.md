@@ -55,7 +55,7 @@ started with developing web sites and applications.">
 </style>
 ```
 
-* 外链文件：`<link rel="stylesheet" src="my-css-file.js">`
+* 外链文件：`<link rel="stylesheet" src="my-css-file.js">`，可以添加 `media` 属性，语法同媒体查询，只在符合媒体查询的设备上生效。
 
 ## javascript
 
