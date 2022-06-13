@@ -98,6 +98,16 @@ TODO display属性 inline-flex
   * scroll 元素滚动时背景不变，页面滚动时变化
   * fixed 背景不变
   * local 背景变化
+* background-origin
+  * `border-box` 边框及内部都能看到背景
+  * `padding-box` 内边距及内部都能看到背景
+  * `content-box` 只有内容可以看到背景
+* background-clip
+  * `border-box` 边框及内部都能看到背景
+  * `padding-box` 内边距及内部都能看到背景
+  * `content-box` 只有内容可以看到背景
+  * `text` 只有文字可以看到背景，文字颜色需要设为透明。
+  * 与 `origin`的区别，origin是修改定位基点，clip是裁剪，
 
 ### 渐变函数
 
@@ -317,13 +327,6 @@ TODO 待补充
 可以同时使用多个值。
 
 ### 混合模式
-
-### background-clip
-
-* `border-box` 边框及内部都能看到背景
-* `padding-box` 内边距及内部都能看到背景
-* `content-box` 只有内容可以看到背景
-* `text` 只有文字可以看到背景，文字颜色需要设为透明。
 
 ### 形状
 
