@@ -4,3 +4,6 @@
 [submodule "css"]
 	path = css
 	url = https://github.com/ouhsnaux/css
+[submodule "sass"]
+	path = sass
+	url = https://github.com/ouhsnaux/sass
