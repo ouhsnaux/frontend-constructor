@@ -2,80 +2,72 @@
 
 文档追求全而不大，比目录更言之有物，比检索书更简洁。
 
-- html
-- css
-  - less/scss/postcss
-- js
-  - es6
-  - ts
-- 图形化
-  - canvas
-  - svg
-  - webGL
-- 框架
-  - vue
-  - react
-- 浏览器
-- node
-- 安全
-- 工具
+- 基础
+  - html
+  - css
+  - js
+- 进阶
+  - css预编译器
+    - [ ] less
+    - [x] scss
+    - [ ] postcss
+  - js
+    - [x] es6
+    - [ ] ts
+- 开发工具
+  - 编辑器
+  - 包管理
+  - 版本控制
+    - monorepo lerna
+    - submodule
   - 代码规范
+- 打包工具
+  - babel
+  - webpack
+  - vite
+  - vue cli / react cli
+- 辅助开发
   - mock
   - 测试
-  - webpack/rollup
-  - npm/yarn
-  - 脚手架
-  - vscode
-  - git
-- 常用功能
--
-  - BEM,ATOM
-  - 框架,TailWindCSS
+    - 单元测试
+    - 端测试
 - 框架
   - vue
-    - vue2
-    - vue3
-    - vue cli/vite
+    - vue2 / vue3
+    - vuex / pinia
     - vue router
-    - vuex/pinia
-    - 源码
+    - vue 源码
     - ssr
+    - 脚手架
   - react
     - router
     - redux
     - 源码
     - SSR
+    - 脚手架
   - 比较
-- 工具
-  - 编辑器
-  - 代码格式化
-  - webpack
-  - babel
-  - 版本控制
-  - mock
-  - test
-    - 普通测试
-    - 端测试
 - 浏览器
-  - ast
-  - 渲染流程
-  - v8
-  - devTools
+  - 渲染
+  - 开发者工具
   - 插件
-    - 油猴
-- 计算机基础
-  - 设计模式
-  - 数据结构与算法
-  - 网络
-  - 操作系统
-- 工程化
-  - 错误上报
-  - 埋点
-  - 登录系统
-  - 权限管理
+- 图形化
+  - [x] canvas
+  - svg
+  - webGL
+    - three.js
 - node
 - 优化
   - 代码优化
   - 性能优化
   - 体验优化
-- [安全](./security/index.md)
+- 其它
+  - 前端设计模式
+  - 网络
+  - 安全
+  - 微前端
+- 功能设计
+  - 错误上报
+  - 埋点
+  - 登录系统
+  - 权限管理
+  - 功能手写
