@@ -1,11 +1,5 @@
 # canvas
 
-## TODO
-
-* 游戏
-* 火柴人
-* 时钟
-
 ## 用途
 
 通过 `<canvas>` 标签和 `JavaScript` 画图。
@@ -32,7 +26,14 @@
 ### 长方形
 
 * `fillRect(x, y, width, height)` 方形盒
-* `strokeRect(x, y, width, height)` 放行框
-* `clearRect(x, y, width, height)` 清楚方形区域
+* `strokeRect(x, y, width, height)` 方形框
+* `clearRect(x, y, width, height)` 清空方形区域
 
-*
+### 线
+
+* beginPath() 开始画线
+* closePath() 停止画线
+* moveTo(x, y) 移动到某个点
+* lineTo(x, y) 画线到某个点
+* stroke() 显示已画的线
+* fill() 填充已画的线围城的封闭区域

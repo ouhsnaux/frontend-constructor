@@ -7,3 +7,5 @@
 * [普通项目最终配置](./pbp/normal)
 * [vue项目最终配置](./pbp/vue)
 * [react项目最终配置](./pbp/react) TODO
+* stylelint TODO
+* ts TODO

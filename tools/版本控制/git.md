@@ -6,6 +6,10 @@
 
 ## 功能
 
+### 子模块
+
+更新： git submodule update --remote --merge
+
 ## 工作流
 
 ## 工具
