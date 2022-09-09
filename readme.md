@@ -3,8 +3,8 @@
 文档追求全而不大，比目录更言之有物，比检索书更简洁。
 
 - 基础
-  - html
-  - css
+  - [x] html
+  - [x] css
   - js
 - 进阶
   - css预编译器
@@ -13,14 +13,14 @@
     - [ ] postcss
   - js
     - [x] es6
-    - [ ] ts
+    - [x] ts
 - 开发工具
-  - 编辑器
+  - [x] 编辑器
   - 包管理
   - 版本控制
     - monorepo lerna
     - submodule
-  - 代码规范
+  - [x] 代码规范
 - 打包工具
   - babel
   - webpack
