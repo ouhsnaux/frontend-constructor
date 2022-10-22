@@ -7,3 +7,6 @@
 [submodule "sass"]
 	path = sass
 	url = https://github.com/ouhsnaux/sass
+[submodule "canvas"]
+	path = canvas
+	url = https://github.com/ouhsnaux/canvas
